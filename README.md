@@ -2,7 +2,7 @@
 ## This is a solution to the *Express API* project of the Make It Real course.
 
 ## The challenge
-Create an API using postgreSQL and Express NodeJs
+Create an API using postgreSQL and Prisma 
 
 ## Description
 This API is a simple CRUD to manage a list of contacts. The API has the following endpoints:
