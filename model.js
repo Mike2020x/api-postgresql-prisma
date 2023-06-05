@@ -1,40 +1,55 @@
-const table = require("@makeitrealcamp/db-mock");
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-const r1 = table.insert({ name: "Michael", number: "123456" });
-const r2 = table.insert({ name: "Ana", number: "565454" });
-function getAllData() {
-  const records = table.findAll();
+async function getAllData() {
+  const records = await prisma.people.findMany();
   return records;
 }
-function getDataById(id) {
-  const record = table.findById(id);
+
+async function getDataById(id) {
+  const record = await prisma.people.findUnique({
+    where: {
+      id
+    }
+  });
   return record;
 }
-function createData(data) {
-  const record = table.insert(data);
+
+async function createData(data) {
+  const record = await prisma.people.create({
+    data: {
+      name: data.name,
+      phone: data.phone
+    }
+  });
   return record;
 }
-function updateData(id, data) {
-  const dataToUpdate = {
-    id,
-    ...data,
-  };
-  const record = table.update(dataToUpdate);
+
+async function updateData(id, data) {
+  const record = await prisma.people.upsert({
+    where:  {id},
+    data: {...data }
+  });
   return record;
 }
-function deleteData(id) {
-  const record = table.remove(id);
+
+async function deleteData(id) {
+  const record = await prisma.people.delete({
+    where: { id: id }
+  });
   return record;
 }
-function getLength() {
-  const records = table.findAll();
+
+async function getLength() {
+  const records = await prisma.people.findMany();
   return records.length;
 }
+
 module.exports = {
   getAllData,
   getDataById,
   createData,
   updateData,
   deleteData,
-  getLength,
+  getLength
 };
