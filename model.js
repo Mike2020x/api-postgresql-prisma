@@ -25,9 +25,9 @@ async function createData(data) {
   return record;
 }
 
-async function updateData(id, data) {
-  const record = await prisma.people.upsert({
-    where:  {id},
+async function updateData(id, data) { 
+  const record = await prisma.people.update({
+    where: { id:id},
     data: {...data }
   });
   return record;
