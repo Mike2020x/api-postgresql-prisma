@@ -9,7 +9,7 @@ This API is a simple CRUD to manage a list of contacts. The API has the followin
 - GET / using findMany() to get all contacts
 - GET /:id using findUnique() to get a contact by id
 - POST / using create() to create a new contact
----- PATCH /:id using update() to update a contact by id----
+- PATCH /:id using update() to update a contact by id
 - DELETE /:id using delete() to delete a contact by id
 
 ## How to use
